@@ -5,7 +5,7 @@ import org.jetbrains.exposed.sql.Table
 object Widgets : Table() {
     val id = integer("id").primaryKey().autoIncrement()
     val name = varchar("name", 255)
-    val price = decimal("price", 6, 3)
+    val quantity = integer("quantity")
     val dateCreated = long("dateCreated")
 }
 
@@ -13,7 +13,7 @@ object Widgets : Table() {
 data class Widget(
         val id: Int,
         val name: String,
-        val price: Double,
+        val quantity: Int,
         val dateCreated: Long
 )
 
@@ -21,6 +21,6 @@ data class Widget(
 data class NewWidget(
         val id: Int?,
         val name: String,
-        val price: Double,
+        val quantity: Int,
         val dateCreated: Long
 )
