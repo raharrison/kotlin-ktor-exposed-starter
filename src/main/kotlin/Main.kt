@@ -8,6 +8,7 @@ import io.ktor.jackson.jackson
 import io.ktor.routing.Routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
+import service.DatabaseFactory
 
 fun Application.module() {
     install(DefaultHeaders)
@@ -17,6 +18,8 @@ fun Application.module() {
             configure(SerializationFeature.INDENT_OUTPUT, true)
         }
     }
+
+    DatabaseFactory()
 
     install(Routing) {
     }
