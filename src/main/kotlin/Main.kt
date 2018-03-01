@@ -9,6 +9,8 @@ import io.ktor.routing.Routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import service.DatabaseFactory
+import service.WidgetService
+import web.widget
 
 fun Application.module() {
     install(DefaultHeaders)
@@ -22,6 +24,7 @@ fun Application.module() {
     DatabaseFactory()
 
     install(Routing) {
+        widget(WidgetService())
     }
 }
 
