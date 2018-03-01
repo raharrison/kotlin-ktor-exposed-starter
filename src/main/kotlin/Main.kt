@@ -29,5 +29,5 @@ fun Application.module() {
 }
 
 fun main(args: Array<String>) {
-    embeddedServer(Netty, 8080, watchPaths = listOf("Main"), module = Application::module).start()
+    embeddedServer(Netty, 8080, watchPaths = listOf("MainKt"), module = Application::module).start()
 }
