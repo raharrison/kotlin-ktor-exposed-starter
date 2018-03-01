@@ -1,5 +1,8 @@
 buildscript {
     ext.kotlin_version = '1.2.21'
+    ext.ktor_version = '0.9.1'
+    ext.exposed_version = '0.10.1'
+    ext.h2_version = '1.4.196'
 
     repositories {
         mavenCentral()
@@ -15,9 +18,24 @@ apply plugin: 'java'
 apply plugin: 'kotlin'
 
 sourceCompatibility = 1.8
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
 
 repositories {
     mavenCentral()
+    maven { url "https://dl.bintray.com/kotlin/kotlinx" }
+    maven { url "https://dl.bintray.com/kotlin/ktor" }
+    maven { url "https://dl.bintray.com/kotlin/exposed" }
+}
+
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
 }
 
 dependencies {
@@ -25,9 +43,16 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
-compileKotlin {
-    kotlinOptions.jvmTarget = "1.8"
-}
-compileTestKotlin {
-    kotlinOptions.jvmTarget = "1.8"
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+
+    compile "io.ktor:ktor-server-netty:$ktor_version"
+    compile "io.ktor:ktor-jackson:$ktor_version"
+
+    compile "com.h2database:h2:$h2_version"
+    compile "org.jetbrains.exposed:exposed:$exposed_version"
+
+    compile "ch.qos.logback:logback-classic:1.2.1"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
