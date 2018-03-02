@@ -4,48 +4,50 @@ import model.NewWidget
 import model.Widget
 import model.Widgets
 import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.transactions.transaction
+import service.DatabaseFactory.dbQuery
 
 class WidgetService {
 
-    fun getAllWidgets(): List<Widget> = transaction {
+    suspend fun getAllWidgets(): List<Widget> = dbQuery {
         Widgets.selectAll().map { toWidget(it) }
     }
 
-    fun getWidget(id: Int): Widget? = transaction {
+    suspend fun getWidget(id: Int): Widget? = dbQuery {
         Widgets.select {
             (Widgets.id eq id)
         }.mapNotNull { toWidget(it) }
                 .singleOrNull()
     }
 
-    fun updateWidget(widget: NewWidget): Widget {
+    suspend fun updateWidget(widget: NewWidget): Widget {
         val id = widget.id
         return if (id == null) {
             addWidget(widget)
         } else {
-            transaction {
+            dbQuery {
                 Widgets.update({ Widgets.id eq id }) {
                     it[name] = widget.name
                     it[quantity] = widget.quantity
                     it[dateCreated] = System.currentTimeMillis()
                 }
-                getWidget(id)!!
             }
+            getWidget(id)!!
         }
     }
 
-    fun addWidget(widget: NewWidget): Widget = transaction {
-        val key = Widgets.insert({
-            it[name] = widget.name
-            it[quantity] = widget.quantity
-            it[dateCreated] = System.currentTimeMillis()
-        }) get Widgets.id
-
-        getWidget(key!!)!!
+    suspend fun addWidget(widget: NewWidget): Widget {
+        var key: Int? = 0
+        dbQuery {
+            key = Widgets.insert({
+                it[name] = widget.name
+                it[quantity] = widget.quantity
+                it[dateCreated] = System.currentTimeMillis()
+            }) get Widgets.id
+        }
+        return getWidget(key!!)!!
     }
 
-    fun deleteWidget(id: Int): Boolean = transaction {
+    suspend fun deleteWidget(id: Int): Boolean = dbQuery {
         Widgets.deleteWhere { Widgets.id eq id } > 0
     }
 

@@ -21,7 +21,7 @@ fun Application.module() {
         }
     }
 
-    DatabaseFactory()
+    DatabaseFactory.init()
 
     install(Routing) {
         widget(WidgetService())
