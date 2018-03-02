@@ -6,9 +6,14 @@
  - [Netty](https://github.com/netty/netty) - Async web server
  - [Exposed](https://github.com/JetBrains/Exposed) - Kotlin SQL framework
  - [H2](https://github.com/h2database/h2database) - Embeddable database
+ - [HikariCP](https://github.com/brettwooldridge/HikariCP) - High performance JDBC connection pooling
  - [Jackson](https://github.com/FasterXML/jackson) - JSON serialization/deserialization
  
 The starter project creates a new in-memory H2 database with one table for `Widget` instances.
+
+As ktor is async and based on coroutines, standard blocking JDBC may cause performance issues when used
+directly on the main thread pool (as threads must be reused for other requests). Therefore, another dedicated thread
+pool is created for all database queries, alongside connection pooling with HikariCP. 
 
 ### Routes:
 
