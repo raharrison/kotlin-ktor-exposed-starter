@@ -13,5 +13,6 @@
     <logger name="io.netty" level="INFO"/>
     <logger name="org.terracotta" level="INFO"/>
     <logger name="com.mchange" level="INFO"/>
+    <logger name="com.zaxxer.hikari" level="INFO" />
 
 </configuration>
