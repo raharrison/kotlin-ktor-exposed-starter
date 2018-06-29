@@ -1,7 +1,7 @@
 buildscript {
-    ext.kotlin_version = '1.2.30'
-    ext.ktor_version = '0.9.1'
-    ext.exposed_version = '0.10.1'
+    ext.kotlin_version = '1.2.50'
+    ext.ktor_version = '0.9.3'
+    ext.exposed_version = '0.10.3'
     ext.h2_version = '1.4.196'
 
     repositories {
@@ -11,8 +11,6 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
-
-version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
@@ -31,20 +29,15 @@ compileTestKotlin {
 
 repositories {
     mavenCentral()
-    maven { url "https://dl.bintray.com/kotlin/kotlinx" }
-    maven { url "https://dl.bintray.com/kotlin/ktor" }
-    maven { url "https://dl.bintray.com/kotlin/exposed" }
+    maven { url = "https://dl.bintray.com/kotlin/kotlinx" }
+    maven { url = "https://dl.bintray.com/kotlin/ktor" }
+    maven { url = "https://dl.bintray.com/kotlin/exposed" }
 }
 
 kotlin {
     experimental {
         coroutines "enable"
     }
-}
-
-dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
 dependencies {
@@ -56,7 +49,7 @@ dependencies {
 
     compile "com.h2database:h2:$h2_version"
     compile "org.jetbrains.exposed:exposed:$exposed_version"
-    compile 'com.zaxxer:HikariCP:2.7.8'
+    compile 'com.zaxxer:HikariCP:3.2.0'
 
     compile "ch.qos.logback:logback-classic:1.2.1"
     testCompile group: 'junit', name: 'junit', version: '4.12'

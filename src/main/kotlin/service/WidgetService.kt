@@ -38,11 +38,11 @@ class WidgetService {
     suspend fun addWidget(widget: NewWidget): Widget {
         var key: Int? = 0
         dbQuery {
-            key = Widgets.insert({
+            key = Widgets.insert {
                 it[name] = widget.name
                 it[quantity] = widget.quantity
                 it[dateCreated] = System.currentTimeMillis()
-            }) get Widgets.id
+            } get Widgets.id
         }
         return getWidget(key!!)!!
     }
