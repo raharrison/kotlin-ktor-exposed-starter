@@ -1,5 +1,7 @@
 ## Starter project to create a simple RESTful web service in Kotlin
 
+Companion article: <https://ryanharrison.co.uk/2018/04/14/kotlin-ktor-exposed-starter.html>
+
 ### Libraries used:
 
  - [Ktor](https://github.com/ktorio/ktor) - Kotlin async web framework
