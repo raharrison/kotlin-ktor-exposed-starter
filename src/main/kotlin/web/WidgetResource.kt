@@ -24,12 +24,14 @@ fun Route.widget(widgetService: WidgetService) {
 
         post("/") {
             val widget = call.receive<NewWidget>()
-            call.respond(widgetService.addWidget(widget))
+            call.respond(HttpStatusCode.Created, widgetService.addWidget(widget))
         }
 
         put("/") {
             val widget = call.receive<NewWidget>()
-            call.respond(widgetService.updateWidget(widget))
+            val updated = widgetService.updateWidget(widget)
+            if(updated == null) call.respond(HttpStatusCode.NotFound)
+            else call.respond(HttpStatusCode.OK, updated)
         }
 
         delete("/{id}") {

@@ -19,7 +19,7 @@ class WidgetService {
                 .singleOrNull()
     }
 
-    suspend fun updateWidget(widget: NewWidget): Widget {
+    suspend fun updateWidget(widget: NewWidget): Widget? {
         val id = widget.id
         return if (id == null) {
             addWidget(widget)
@@ -31,7 +31,7 @@ class WidgetService {
                     it[dateCreated] = System.currentTimeMillis()
                 }
             }
-            getWidget(id)!!
+            getWidget(id)
         }
     }
 
