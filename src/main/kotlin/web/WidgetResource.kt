@@ -1,5 +1,6 @@
 package web
 
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import io.ktor.application.call
 import io.ktor.http.HttpStatusCode
@@ -45,11 +46,14 @@ fun Route.widget(widgetService: WidgetService) {
 
     }
 
+    val mapper = jacksonObjectMapper().apply {
+        setSerializationInclusion(JsonInclude.Include.NON_NULL)
+    }
+
     webSocket("/updates") {
         try {
             widgetService.addChangeListener(this.hashCode()) {
-                val out = jacksonObjectMapper().writeValueAsString(it)
-                outgoing.send(Frame.Text(out))
+                outgoing.send(Frame.Text(mapper.writeValueAsString(it)))
             }
             while(true) incoming.receive()
         } finally {
