@@ -21,12 +21,12 @@ object DatabaseFactory {
             Widgets.insert {
                 it[name] = "widget one"
                 it[quantity] = 27
-                it[dateCreated] = System.currentTimeMillis()
+                it[dateUpdated] = System.currentTimeMillis()
             }
             Widgets.insert {
                 it[name] = "widget two"
                 it[quantity] = 14
-                it[dateCreated] = System.currentTimeMillis()
+                it[dateUpdated] = System.currentTimeMillis()
             }
         }
     }

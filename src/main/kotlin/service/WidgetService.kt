@@ -28,7 +28,7 @@ class WidgetService {
                 Widgets.update({ Widgets.id eq id }) {
                     it[name] = widget.name
                     it[quantity] = widget.quantity
-                    it[dateCreated] = System.currentTimeMillis()
+                    it[dateUpdated] = System.currentTimeMillis()
                 }
             }
             getWidget(id)
@@ -41,7 +41,7 @@ class WidgetService {
             key = Widgets.insert {
                 it[name] = widget.name
                 it[quantity] = widget.quantity
-                it[dateCreated] = System.currentTimeMillis()
+                it[dateUpdated] = System.currentTimeMillis()
             } get Widgets.id
         }
         return getWidget(key!!)!!
@@ -56,6 +56,6 @@ class WidgetService {
                     id = row[Widgets.id],
                     name = row[Widgets.name],
                     quantity = row[Widgets.quantity],
-                    dateCreated = row[Widgets.dateCreated]
+                    dateUpdated = row[Widgets.dateUpdated]
             )
 }
