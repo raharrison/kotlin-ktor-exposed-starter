@@ -1,10 +1,13 @@
 package web
 
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import io.ktor.application.call
 import io.ktor.http.HttpStatusCode
+import io.ktor.http.cio.websocket.Frame
 import io.ktor.request.receive
 import io.ktor.response.respond
 import io.ktor.routing.*
+import io.ktor.websocket.webSocket
 import model.NewWidget
 import service.WidgetService
 
@@ -40,5 +43,17 @@ fun Route.widget(widgetService: WidgetService) {
             else call.respond(HttpStatusCode.NotFound)
         }
 
+    }
+
+    webSocket("/updates") {
+        try {
+            widgetService.addChangeListener(this.hashCode()) {
+                val out = jacksonObjectMapper().writeValueAsString(it)
+                outgoing.send(Frame.Text(out))
+            }
+            while(true) incoming.receive()
+        } finally {
+            widgetService.removeChangeListener(this.hashCode())
+        }
     }
 }

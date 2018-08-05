@@ -8,6 +8,7 @@ import io.ktor.jackson.jackson
 import io.ktor.routing.Routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
+import io.ktor.websocket.WebSockets
 import service.DatabaseFactory
 import service.WidgetService
 import web.widget
@@ -15,6 +16,8 @@ import web.widget
 fun Application.module() {
     install(DefaultHeaders)
     install(CallLogging)
+    install(WebSockets)
+
     install(ContentNegotiation) {
         jackson {
             configure(SerializationFeature.INDENT_OUTPUT, true)
@@ -23,9 +26,12 @@ fun Application.module() {
 
     DatabaseFactory.init()
 
+    val widgetService = WidgetService()
+
     install(Routing) {
-        widget(WidgetService())
+        widget(widgetService)
     }
+
 }
 
 fun main(args: Array<String>) {
