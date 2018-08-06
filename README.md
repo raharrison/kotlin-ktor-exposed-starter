@@ -44,3 +44,22 @@ returns
 `PUT /widget` --> update an existing widgets name or quantity. Pass in the id in the JSON request to determine which record to update
 
 `DELETE /widget/{id}` --> delete the widget with the specified id
+
+### Notifications (WebSocket)
+
+All updates (creates, updates and deletes) to `Widget` instances are served as notifications through a WebSocket endpoint:
+
+`WS /updates` --> returns `Notification` instances containing the change type, id and entity (if applicable) e.g:
+
+```json
+{ 
+    "type": "CREATE", 
+    "id": 12, 
+    "entity": { 
+      "id": 12, 
+      "name": "widget1", 
+      "quantity": 5, 
+      "dateUpdated": 1533583858169 
+    }
+}
+```
