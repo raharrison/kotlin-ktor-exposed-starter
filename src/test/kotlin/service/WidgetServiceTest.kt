@@ -99,6 +99,26 @@ class WidgetServiceTest: ServerTest() {
         Unit
     }
 
+    @Nested
+    inner class ErrorCases {
+
+        @Test
+        fun testUpdateInvalidWidget() = runBlocking {
+            assertThat(widgetService.updateWidget(NewWidget(-1, "invalid", -1))).isNull()
+        }
+
+        @Test
+        fun testGetInvalidWidget() = runBlocking {
+            assertThat(widgetService.getWidget(-1)).isNull()
+        }
+
+        @Test
+        fun testDeleteInvalidWidget() = runBlocking {
+            assertThat(widgetService.deleteWidget(-1)).isFalse()
+            Unit
+        }
+    }
+
     private suspend fun addWidget(widget: NewWidget): Widget {
         return widgetService.addWidget(widget)
     }
