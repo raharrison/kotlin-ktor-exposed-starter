@@ -9,6 +9,7 @@ import io.ktor.request.receive
 import io.ktor.response.respond
 import io.ktor.routing.*
 import io.ktor.websocket.webSocket
+import kotlinx.coroutines.experimental.channels.consumeEach
 import model.NewWidget
 import service.WidgetService
 
@@ -55,7 +56,9 @@ fun Route.widget(widgetService: WidgetService) {
             widgetService.addChangeListener(this.hashCode()) {
                 outgoing.send(Frame.Text(mapper.writeValueAsString(it)))
             }
-            while(true) incoming.receive()
+            while(true) {
+                incoming.receiveOrNull() ?: break
+            }
         } finally {
             widgetService.removeChangeListener(this.hashCode())
         }
