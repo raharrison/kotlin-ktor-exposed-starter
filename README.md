@@ -64,3 +64,10 @@ All updates (creates, updates and deletes) to `Widget` instances are served as n
     }
 }
 ```
+
+### Testing
+
+The sample Widget service and corresponding endpoints are also tested with 100% coverage. Upon startup of the main JUnit suite (via the `test` source folder), the server is started ready for testing and is torn down after all tests are run.
+
+- Unit testing of services with AssertJ - DAO and business logic
+- Integration testing of endpoints using running server with Rest Assured - routing tests/status codes/response structure
