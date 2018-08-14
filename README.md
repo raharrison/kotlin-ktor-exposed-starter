@@ -10,6 +10,7 @@ Companion article: <https://ryanharrison.co.uk/2018/04/14/kotlin-ktor-exposed-st
  - [H2](https://github.com/h2database/h2database) - Embeddable database
  - [HikariCP](https://github.com/brettwooldridge/HikariCP) - High performance JDBC connection pooling
  - [Jackson](https://github.com/FasterXML/jackson) - JSON serialization/deserialization
+ - [JUnit 5](https://junit.org/junit5/), [AssertJ](http://joel-costigliola.github.io/assertj/) and [Rest Assured](http://rest-assured.io/) for testing
  
 The starter project creates a new in-memory H2 database with one table for `Widget` instances.
 
@@ -63,3 +64,10 @@ All updates (creates, updates and deletes) to `Widget` instances are served as n
     }
 }
 ```
+
+### Testing
+
+The sample Widget service and corresponding endpoints are also tested with 100% coverage. Upon startup of the main JUnit suite (via the `test` source folder), the server is started ready for testing and is torn down after all tests are run.
+
+- Unit testing of services with AssertJ - DAO and business logic
+- Integration testing of endpoints using running server with Rest Assured - routing tests/status codes/response structure
