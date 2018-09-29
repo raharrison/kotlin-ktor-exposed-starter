@@ -1,7 +1,7 @@
 buildscript {
-    ext.kotlin_version = '1.2.51'
-    ext.ktor_version = '0.9.3'
-    ext.exposed_version = '0.10.4'
+    ext.kotlin_version = '1.2.70'
+    ext.ktor_version = '0.9.5'
+    ext.exposed_version = '0.10.5'
     ext.h2_version = '1.4.196'
 
     repositories {
