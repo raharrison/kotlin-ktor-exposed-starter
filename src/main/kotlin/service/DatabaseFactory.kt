@@ -2,14 +2,13 @@ package service
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
-import kotlinx.coroutines.experimental.newFixedThreadPoolContext
-import kotlinx.coroutines.experimental.withContext
-import model.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import model.Widgets
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils.create
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.transactions.transaction
-import kotlin.coroutines.experimental.CoroutineContext
 
 object DatabaseFactory {
 
@@ -42,15 +41,9 @@ object DatabaseFactory {
         return HikariDataSource(config)
     }
 
-    private val dispatcher: CoroutineContext
-
-    init {
-        dispatcher = newFixedThreadPoolContext(5, "database-pool")
-    }
-
     suspend fun <T> dbQuery(
             block: () -> T): T =
-            withContext(dispatcher) {
+            withContext(Dispatchers.IO) {
                 transaction { block() }
             }
 

@@ -1,7 +1,7 @@
 package service
 
 import common.ServerTest
-import kotlinx.coroutines.experimental.runBlocking
+import kotlinx.coroutines.runBlocking
 import model.ChangeType
 import model.NewWidget
 import model.Notification
