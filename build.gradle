@@ -51,7 +51,7 @@ dependencies {
     compile 'com.zaxxer:HikariCP:3.2.0'
 
     compile "ch.qos.logback:logback-classic:1.2.1"
-    testCompile "org.assertj:assertj-core:3.10.0"
-    testCompile "io.rest-assured:rest-assured:3.1.0"
-    testCompile "org.junit.jupiter:junit-jupiter-api:5.2.0"
+    testCompile "org.assertj:assertj-core:3.11.1"
+    testCompile "io.rest-assured:rest-assured:3.2.0"
+    testCompile "org.junit.jupiter:junit-jupiter-api:5.3.2"
 }
