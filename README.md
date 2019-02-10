@@ -1,5 +1,7 @@
 ## Starter project to create a simple RESTful web service in Kotlin
 
+**Updated for Kotlin 1.3.21 and Ktor 1.1.2**
+
 Companion article: <https://ryanharrison.co.uk/2018/04/14/kotlin-ktor-exposed-starter.html>
 
 ### Libraries used:
