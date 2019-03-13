@@ -29,6 +29,10 @@ repositories {
     jcenter()
 }
 
+test {
+    useJUnitPlatform()
+}
+
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
@@ -45,4 +49,5 @@ dependencies {
     testCompile "org.assertj:assertj-core:3.11.1"
     testCompile "io.rest-assured:rest-assured:3.3.0"
     testCompile "org.junit.jupiter:junit-jupiter-api:5.4.0"
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.4.0'
 }
