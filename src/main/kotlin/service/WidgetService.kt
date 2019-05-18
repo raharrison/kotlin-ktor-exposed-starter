@@ -56,7 +56,7 @@ class WidgetService {
                 it[name] = widget.name
                 it[quantity] = widget.quantity
                 it[dateUpdated] = System.currentTimeMillis()
-            } get Widgets.id)!!
+            } get Widgets.id)
         }
         return getWidget(key)!!.also {
             onChange(ChangeType.CREATE, key, it)
