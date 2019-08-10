@@ -21,7 +21,8 @@ fun Route.widget(widgetService: WidgetService) {
         }
 
         get("/{id}") {
-            val widget = widgetService.getWidget(call.parameters["id"]?.toInt()!!)
+            val id = call.parameters["id"]?.toInt() ?: throw IllegalStateException("Must provide id");
+            val widget = widgetService.getWidget(id)
             if (widget == null) call.respond(HttpStatusCode.NotFound)
             else call.respond(widget)
         }
@@ -34,12 +35,13 @@ fun Route.widget(widgetService: WidgetService) {
         put("/") {
             val widget = call.receive<NewWidget>()
             val updated = widgetService.updateWidget(widget)
-            if(updated == null) call.respond(HttpStatusCode.NotFound)
+            if (updated == null) call.respond(HttpStatusCode.NotFound)
             else call.respond(HttpStatusCode.OK, updated)
         }
 
         delete("/{id}") {
-            val removed = widgetService.deleteWidget(call.parameters["id"]?.toInt()!!)
+            val id = call.parameters["id"]?.toInt() ?: throw IllegalStateException("Must provide id");
+            val removed = widgetService.deleteWidget(id)
             if (removed) call.respond(HttpStatusCode.OK)
             else call.respond(HttpStatusCode.NotFound)
         }
@@ -55,7 +57,7 @@ fun Route.widget(widgetService: WidgetService) {
             widgetService.addChangeListener(this.hashCode()) {
                 outgoing.send(Frame.Text(mapper.writeValueAsString(it)))
             }
-            while(true) {
+            while (true) {
                 incoming.receiveOrNull() ?: break
             }
         } finally {
