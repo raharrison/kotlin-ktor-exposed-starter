@@ -9,6 +9,7 @@ import io.ktor.request.receive
 import io.ktor.response.respond
 import io.ktor.routing.*
 import io.ktor.websocket.webSocket
+import kotlinx.coroutines.channels.receiveOrNull
 import model.NewWidget
 import service.WidgetService
 
