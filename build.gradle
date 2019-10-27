@@ -1,7 +1,7 @@
 buildscript {
-    ext.kotlin_version = '1.3.41'
-    ext.ktor_version = '1.2.3'
-    ext.exposed_version = '0.16.3'
+    ext.kotlin_version = '1.3.50'
+    ext.ktor_version = '1.2.5'
+    ext.exposed_version = '0.17.6'
     ext.h2_version = '1.4.196'
 
     repositories {
@@ -43,11 +43,11 @@ dependencies {
 
     compile "com.h2database:h2:$h2_version"
     compile "org.jetbrains.exposed:exposed:$exposed_version"
-    compile 'com.zaxxer:HikariCP:3.3.1'
+    compile 'com.zaxxer:HikariCP:3.4.1'
 
-    compile "ch.qos.logback:logback-classic:1.2.1"
-    testCompile "org.assertj:assertj-core:3.11.1"
-    testCompile "io.rest-assured:rest-assured:4.0.0"
+    compile "ch.qos.logback:logback-classic:1.2.3"
+    testCompile "org.assertj:assertj-core:3.14.0"
+    testCompile "io.rest-assured:rest-assured:4.1.2"
     testCompile "org.junit.jupiter:junit-jupiter-api:5.5.1"
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.1'
 }
