@@ -14,7 +14,7 @@ class WidgetService {
 
     fun removeChangeListener(id: Int) = listeners.remove(id)
 
-    private suspend fun onChange(type: ChangeType, id: Int, entity: Widget?=null) {
+    private suspend fun onChange(type: ChangeType, id: Int, entity: Widget? = null) {
         listeners.values.forEach {
             it.invoke(Notification(type, id, entity))
         }
@@ -28,7 +28,7 @@ class WidgetService {
         Widgets.select {
             (Widgets.id eq id)
         }.mapNotNull { toWidget(it) }
-                .singleOrNull()
+            .singleOrNull()
     }
 
     suspend fun updateWidget(widget: NewWidget): Widget? {
@@ -67,15 +67,15 @@ class WidgetService {
         return dbQuery {
             Widgets.deleteWhere { Widgets.id eq id } > 0
         }.also {
-            if(it) onChange(ChangeType.DELETE, id)
+            if (it) onChange(ChangeType.DELETE, id)
         }
     }
 
     private fun toWidget(row: ResultRow): Widget =
-            Widget(
-                    id = row[Widgets.id],
-                    name = row[Widgets.name],
-                    quantity = row[Widgets.quantity],
-                    dateUpdated = row[Widgets.dateUpdated]
-            )
+        Widget(
+            id = row[Widgets.id],
+            name = row[Widgets.name],
+            quantity = row[Widgets.quantity],
+            dateUpdated = row[Widgets.dateUpdated]
+        )
 }

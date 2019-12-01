@@ -2,12 +2,11 @@ package service
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import model.Widgets
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils.create
 import org.jetbrains.exposed.sql.insert
+import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
 import org.jetbrains.exposed.sql.transactions.transaction
 
 object DatabaseFactory {
@@ -42,9 +41,7 @@ object DatabaseFactory {
     }
 
     suspend fun <T> dbQuery(
-            block: () -> T): T =
-            withContext(Dispatchers.IO) {
-                transaction { block() }
-            }
+            block: suspend () -> T): T =
+            newSuspendedTransaction { block() }
 
 }
