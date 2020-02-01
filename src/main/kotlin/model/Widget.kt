@@ -3,10 +3,11 @@ package model
 import org.jetbrains.exposed.sql.Table
 
 object Widgets : Table() {
-    val id = integer("id").primaryKey().autoIncrement()
+    val id = integer("id").autoIncrement()
     val name = varchar("name", 255)
     val quantity = integer("quantity")
     val dateUpdated = long("dateUpdated")
+    override val primaryKey = PrimaryKey(id)
 }
 
 
