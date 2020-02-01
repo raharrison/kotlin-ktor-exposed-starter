@@ -9,7 +9,9 @@ import io.ktor.request.receive
 import io.ktor.response.respond
 import io.ktor.routing.*
 import io.ktor.websocket.webSocket
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.receiveOrNull
+import kotlinx.coroutines.withContext
 import model.NewWidget
 import service.WidgetService
 
@@ -22,7 +24,7 @@ fun Route.widget(widgetService: WidgetService) {
         }
 
         get("/{id}") {
-            val id = call.parameters["id"]?.toInt() ?: throw IllegalStateException("Must provide id");
+            val id = call.parameters["id"]?.toInt() ?: throw IllegalStateException("Must provide id")
             val widget = widgetService.getWidget(id)
             if (widget == null) call.respond(HttpStatusCode.NotFound)
             else call.respond(widget)
@@ -56,7 +58,10 @@ fun Route.widget(widgetService: WidgetService) {
     webSocket("/updates") {
         try {
             widgetService.addChangeListener(this.hashCode()) {
-                outgoing.send(Frame.Text(mapper.writeValueAsString(it)))
+                val output = withContext(Dispatchers.IO) {
+                    mapper.writeValueAsString(it)
+                }
+                outgoing.send(Frame.Text(output))
             }
             while (true) {
                 incoming.receiveOrNull() ?: break
