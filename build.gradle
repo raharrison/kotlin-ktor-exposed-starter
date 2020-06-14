@@ -34,6 +34,8 @@ test {
     useJUnitPlatform()
 }
 
+mainClassName = 'MainKt'
+
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
