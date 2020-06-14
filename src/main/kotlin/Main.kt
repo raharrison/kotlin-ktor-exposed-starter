@@ -12,6 +12,7 @@ import io.ktor.server.netty.Netty
 import io.ktor.websocket.WebSockets
 import service.DatabaseFactory
 import service.WidgetService
+import web.index
 import web.widget
 
 fun Application.module() {
@@ -30,6 +31,7 @@ fun Application.module() {
     val widgetService = WidgetService()
 
     install(Routing) {
+        index()
         widget(widgetService)
     }
 
