@@ -6,6 +6,12 @@
 
 Companion article: <https://ryanharrison.co.uk/2018/04/14/kotlin-ktor-exposed-starter.html>
 
+## Getting Started
+
+1. Clone the repo
+2. In the root directory execute `./gradlew run`
+3. By default the server will start on port `8080`. See below for routing information.
+
 ### Libraries used:
 
  - [Ktor](https://github.com/ktorio/ktor) - Kotlin async web framework
