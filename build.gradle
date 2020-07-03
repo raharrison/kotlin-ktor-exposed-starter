@@ -47,7 +47,7 @@ dependencies {
     compile "com.h2database:h2:$h2_version"
     compile "org.jetbrains.exposed:exposed-core:$exposed_version"
     compile "org.jetbrains.exposed:exposed-jdbc:$exposed_version"
-    compile 'com.zaxxer:HikariCP:3.4.2'
+    compile 'com.zaxxer:HikariCP:3.4.5'
 
     compile "ch.qos.logback:logback-classic:1.2.3"
     testCompile "org.assertj:assertj-core:3.16.1"
