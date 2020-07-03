@@ -51,7 +51,7 @@ dependencies {
 
     compile "ch.qos.logback:logback-classic:1.2.3"
     testCompile "org.assertj:assertj-core:3.16.1"
-    testCompile "io.rest-assured:rest-assured:4.3.0"
+    testCompile "io.rest-assured:rest-assured:4.3.1"
     testCompile "org.junit.jupiter:junit-jupiter-api:$junit_version"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit_version"
 }
