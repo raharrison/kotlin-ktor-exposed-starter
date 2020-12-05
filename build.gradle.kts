@@ -1,16 +1,16 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val ktorVersion = "1.4.0"
-val exposedVersion = "0.26.2"
+val ktorVersion = "1.4.3"
+val exposedVersion = "0.28.1"
 val h2Version = "1.4.200"
 val hikariCpVersion = "3.4.5"
 val logbackVersion = "1.2.3"
-val assertjVersion = "3.16.1"
-val restAssuredVersion = "4.3.1"
-val junitVersion = "5.6.2"
+val assertjVersion = "3.18.1"
+val restAssuredVersion = "4.3.2"
+val junitVersion = "5.7.0"
 
 plugins {
-    kotlin("jvm") version "1.4.0"
+    kotlin("jvm") version "1.4.20"
     application
 }
 
