@@ -1,10 +1,18 @@
 package web
 
+import com.fasterxml.jackson.annotation.JsonInclude
+import com.fasterxml.jackson.core.type.TypeReference
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import common.ServerTest
+import io.ktor.client.*
+import io.ktor.client.features.websocket.*
+import io.ktor.http.cio.websocket.*
 import io.restassured.RestAssured.*
 import io.restassured.http.ContentType
-import model.NewWidget
-import model.Widget
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
+import model.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -114,6 +122,46 @@ class WidgetResourceTest: ServerTest() {
                     .statusCode(404)
         }
 
+    }
+
+    @Nested
+    inner class WebSocketNotifications {
+        @Test
+        fun testGetNotificationForWidgetAdd() {
+            // when
+            val newWidget = NewWidget(null, "widgetForSocket", 23)
+
+            val client = HttpClient {
+                install(WebSockets)
+            }
+
+            val mapper = jacksonObjectMapper().apply {
+                setSerializationInclusion(JsonInclude.Include.NON_NULL)
+            }
+
+            runBlocking {
+                client.webSocket(host = "localhost", port = 8080, path = "/updates") {
+                    val created = addWidget(newWidget)
+
+                    val frame = incoming.receive()
+                    assertThat(frame).isInstanceOf(Frame.Text::class.java)
+                    val textFrame = frame as Frame.Text
+                    val value = withContext(Dispatchers.IO) {
+                        mapper.readValue(textFrame.readText(),
+                            object: TypeReference<WidgetNotification>() {})
+                    }
+                    assertThat(value.type).isEqualTo(ChangeType.CREATE)
+                    assertThat(value.entity).isNotNull.also {
+                        it.extracting(Widget::name.name).isEqualTo(newWidget.name)
+                        it.extracting(Widget::id.name).isEqualTo(created.id)
+                    }
+
+                    close(CloseReason(CloseReason.Codes.NORMAL, "Finished test"))
+                }
+            }
+
+
+        }
     }
 
     private fun addWidget(widget: NewWidget): Widget {
