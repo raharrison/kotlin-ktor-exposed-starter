@@ -35,6 +35,7 @@ dependencies {
     testImplementation("io.rest-assured:rest-assured:$restAssuredVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
+    testImplementation("io.ktor:ktor-client-cio:$ktorVersion")
 }
 
 application {

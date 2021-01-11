@@ -10,11 +10,13 @@ import io.ktor.response.respond
 import io.ktor.routing.*
 import io.ktor.websocket.webSocket
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.receiveOrNull
 import kotlinx.coroutines.withContext
 import model.NewWidget
 import service.WidgetService
 
+@ExperimentalCoroutinesApi
 fun Route.widget(widgetService: WidgetService) {
 
     route("/widget") {
