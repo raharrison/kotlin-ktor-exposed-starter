@@ -5,9 +5,11 @@ import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.engine.stop
 import io.ktor.server.netty.Netty
+import io.ktor.util.*
 import io.restassured.RestAssured
 import io.restassured.response.ResponseBodyExtractionOptions
 import io.restassured.specification.RequestSpecification
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import model.Widgets
 import module
@@ -33,6 +35,8 @@ open class ServerTest {
 
         private lateinit var server: ApplicationEngine
 
+        @KtorExperimentalAPI
+        @ExperimentalCoroutinesApi
         @BeforeAll
         @JvmStatic
         fun startServer() {
