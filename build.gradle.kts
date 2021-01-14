@@ -4,6 +4,8 @@ val ktorVersion = "1.4.3"
 val exposedVersion = "0.28.1"
 val h2Version = "1.4.200"
 val hikariCpVersion = "3.4.5"
+val flywayVersion = "7.5.0"
+val ktorFlywayVersion = "1.2.1"
 val logbackVersion = "1.2.3"
 val assertjVersion = "3.18.1"
 val restAssuredVersion = "4.3.3"
@@ -29,8 +31,8 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
     implementation("com.zaxxer:HikariCP:$hikariCpVersion")
-    implementation("com.viartemev:ktor-flyway-feature:1.2.1")
-    implementation("org.flywaydb:flyway-core:7.3.1")
+    implementation("com.viartemev:ktor-flyway-feature:$ktorFlywayVersion")
+    implementation("org.flywaydb:flyway-core:$flywayVersion")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
 
     testImplementation("org.assertj:assertj-core:$assertjVersion")
