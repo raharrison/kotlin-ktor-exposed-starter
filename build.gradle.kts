@@ -10,7 +10,7 @@ val restAssuredVersion = "4.3.3"
 val junitVersion = "5.7.0"
 
 plugins {
-    kotlin("jvm") version "1.4.20"
+    kotlin("jvm") version "1.4.21-2"
     application
 }
 
