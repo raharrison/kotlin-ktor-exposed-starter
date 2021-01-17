@@ -1,6 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val ktorVersion = "1.4.3"
+val ktorVersion = "1.5.0"
 val exposedVersion = "0.28.1"
 val h2Version = "1.4.200"
 val hikariCpVersion = "3.4.5"
