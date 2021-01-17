@@ -2,7 +2,7 @@
 
 ## Starter project to create a simple RESTful web service in Kotlin
 
-**Updated for Kotlin 1.4.20 and Ktor 1.4.3**
+**Updated for Kotlin 1.4.21 and Ktor 1.5.0**
 
 Companion article: <https://ryanharrison.co.uk/2018/04/14/kotlin-ktor-exposed-starter.html>
 
@@ -19,6 +19,7 @@ Companion article: <https://ryanharrison.co.uk/2018/04/14/kotlin-ktor-exposed-st
  - [Exposed](https://github.com/JetBrains/Exposed) - Kotlin SQL framework
  - [H2](https://github.com/h2database/h2database) - Embeddable database
  - [HikariCP](https://github.com/brettwooldridge/HikariCP) - High performance JDBC connection pooling
+ - [Flyway](https://flywaydb.org/) - Database migrations
  - [Jackson](https://github.com/FasterXML/jackson) - JSON serialization/deserialization
  - [JUnit 5](https://junit.org/junit5/), [AssertJ](http://joel-costigliola.github.io/assertj/) and [Rest Assured](http://rest-assured.io/) for testing
  
