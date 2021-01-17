@@ -1,8 +1,6 @@
 package web
 
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.core.type.TypeReference
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import common.ServerTest
 import io.ktor.client.*
 import io.ktor.client.features.websocket.*
@@ -12,10 +10,14 @@ import io.restassured.http.ContentType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import model.*
+import model.ChangeType
+import model.NewWidget
+import model.Widget
+import model.WidgetNotification
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import util.JsonMapper.defaultMapper
 
 class WidgetResourceTest: ServerTest() {
 
@@ -135,10 +137,6 @@ class WidgetResourceTest: ServerTest() {
                 install(WebSockets)
             }
 
-            val mapper = jacksonObjectMapper().apply {
-                setSerializationInclusion(JsonInclude.Include.NON_NULL)
-            }
-
             runBlocking {
                 client.webSocket(host = "localhost", port = 8080, path = "/updates") {
                     val created = addWidget(newWidget)
@@ -147,8 +145,8 @@ class WidgetResourceTest: ServerTest() {
                     assertThat(frame).isInstanceOf(Frame.Text::class.java)
                     val textFrame = frame as Frame.Text
                     val value = withContext(Dispatchers.IO) {
-                        mapper.readValue(textFrame.readText(),
-                            object: TypeReference<WidgetNotification>() {})
+                        defaultMapper.readValue(textFrame.readText(),
+                            object : TypeReference<WidgetNotification>() {})
                     }
                     assertThat(value.type).isEqualTo(ChangeType.CREATE)
                     assertThat(value.entity).isNotNull.also {

@@ -1,20 +1,19 @@
 package web
 
-import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import io.ktor.application.call
-import io.ktor.http.HttpStatusCode
-import io.ktor.http.cio.websocket.Frame
-import io.ktor.request.receive
-import io.ktor.response.respond
+import io.ktor.application.*
+import io.ktor.http.*
+import io.ktor.http.cio.websocket.*
+import io.ktor.request.*
+import io.ktor.response.*
 import io.ktor.routing.*
-import io.ktor.websocket.webSocket
+import io.ktor.websocket.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.receiveOrNull
 import kotlinx.coroutines.withContext
 import model.NewWidget
 import service.WidgetService
+import util.JsonMapper.defaultMapper
 
 @ExperimentalCoroutinesApi
 fun Route.widget(widgetService: WidgetService) {
@@ -53,15 +52,11 @@ fun Route.widget(widgetService: WidgetService) {
 
     }
 
-    val mapper = jacksonObjectMapper().apply {
-        setSerializationInclusion(JsonInclude.Include.NON_NULL)
-    }
-
     webSocket("/updates") {
         try {
             widgetService.addChangeListener(this.hashCode()) {
                 val output = withContext(Dispatchers.IO) {
-                    mapper.writeValueAsString(it)
+                    defaultMapper.writeValueAsString(it)
                 }
                 outgoing.send(Frame.Text(output))
             }
