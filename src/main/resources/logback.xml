@@ -5,7 +5,7 @@
         </encoder>
     </appender>
 
-    <root level="debug">
+    <root level="DEBUG">
         <appender-ref ref="STDOUT"/>
     </root>
 
@@ -14,5 +14,6 @@
     <logger name="org.terracotta" level="INFO"/>
     <logger name="com.mchange" level="INFO"/>
     <logger name="com.zaxxer.hikari" level="INFO" />
+    <logger name="org.flywaydb" level="INFO"/>
 
 </configuration>
