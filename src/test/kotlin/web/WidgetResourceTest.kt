@@ -138,7 +138,7 @@ class WidgetResourceTest: ServerTest() {
             }
 
             runBlocking {
-                client.webSocket(host = "localhost", port = 8080, path = "/updates") {
+                client.webSocket(host = "localhost", port = 8081, path = "/updates") {
                     val created = addWidget(newWidget)
 
                     val frame = incoming.receive()
