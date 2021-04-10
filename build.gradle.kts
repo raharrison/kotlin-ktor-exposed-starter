@@ -43,7 +43,7 @@ dependencies {
 }
 
 application {
-    mainClassName = "MainKt"
+    mainClass.set("MainKt")
 }
 
 tasks.withType<KotlinCompile>().configureEach {
