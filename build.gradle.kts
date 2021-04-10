@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 val ktorVersion = "1.5.3"
 val exposedVersion = "0.30.1"
 val h2Version = "1.4.200"
-val hikariCpVersion = "4.0.2"
+val hikariCpVersion = "4.0.3"
 val flywayVersion = "7.7.3"
 val ktorFlywayVersion = "1.2.2"
 val logbackVersion = "1.2.3"
