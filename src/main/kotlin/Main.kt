@@ -1,9 +1,8 @@
 import com.viartemev.ktor.flyway.FlywayFeature
 import io.ktor.application.*
 import io.ktor.features.*
-import io.ktor.http.*
-import io.ktor.jackson.*
 import io.ktor.routing.*
+import io.ktor.serialization.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import io.ktor.util.*
@@ -12,7 +11,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.jetbrains.exposed.sql.Database
 import service.DatabaseFactory
 import service.WidgetService
-import util.JsonMapper.defaultMapper
+import util.JsonMapper
 import web.index
 import web.widget
 
@@ -24,7 +23,7 @@ fun Application.module() {
     install(WebSockets)
 
     install(ContentNegotiation) {
-        register(ContentType.Application.Json, JacksonConverter(defaultMapper))
+        json(JsonMapper.defaultMapper)
     }
 
     val db = DatabaseFactory.create()

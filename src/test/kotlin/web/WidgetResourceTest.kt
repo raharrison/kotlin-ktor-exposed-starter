@@ -1,6 +1,5 @@
 package web
 
-import com.fasterxml.jackson.core.type.TypeReference
 import common.ServerTest
 import io.ktor.client.*
 import io.ktor.client.features.websocket.*
@@ -10,6 +9,7 @@ import io.restassured.http.ContentType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.decodeFromString
 import model.ChangeType
 import model.NewWidget
 import model.Widget
@@ -66,7 +66,7 @@ class WidgetResourceTest: ServerTest() {
         val update = NewWidget(saved.id, "updated", 46)
         val updated = given()
                 .contentType(ContentType.JSON)
-                .body(update)
+                .bodyJson(update)
                 .When()
                 .put("/widget")
                 .then()
@@ -103,7 +103,7 @@ class WidgetResourceTest: ServerTest() {
             val updatedWidget = NewWidget(-1, "invalid", -1)
             given()
                     .contentType(ContentType.JSON)
-                    .body(updatedWidget)
+                    .bodyJson(updatedWidget)
                     .When()
                     .put("/widget")
                     .then()
@@ -145,8 +145,7 @@ class WidgetResourceTest: ServerTest() {
                     assertThat(frame).isInstanceOf(Frame.Text::class.java)
                     val textFrame = frame as Frame.Text
                     val value = withContext(Dispatchers.IO) {
-                        defaultMapper.readValue(textFrame.readText(),
-                            object : TypeReference<WidgetNotification>() {})
+                        defaultMapper.decodeFromString<WidgetNotification>(textFrame.readText())
                     }
                     assertThat(value.type).isEqualTo(ChangeType.CREATE)
                     assertThat(value.entity).isNotNull.also {
@@ -165,7 +164,7 @@ class WidgetResourceTest: ServerTest() {
     private fun addWidget(widget: NewWidget): Widget {
         return given()
                 .contentType(ContentType.JSON)
-                .body(widget)
+                .bodyJson(widget)
                 .When()
                 .post("/widget")
                 .then()

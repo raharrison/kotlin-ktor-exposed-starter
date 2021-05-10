@@ -1,7 +1,5 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
-val ktorVersion = "1.5.3"
-val exposedVersion = "0.30.2"
+val ktorVersion = "1.5.4"
+val exposedVersion = "0.31.1"
 val h2Version = "1.4.200"
 val hikariCpVersion = "4.0.3"
 val flywayVersion = "7.7.3"
@@ -12,7 +10,8 @@ val restAssuredVersion = "4.3.3"
 val junitVersion = "5.7.1"
 
 plugins {
-    kotlin("jvm") version "1.4.32"
+    kotlin("jvm") version "1.5.0"
+    kotlin("plugin.serialization") version "1.5.0"
     application
 }
 
@@ -24,7 +23,7 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
     implementation("io.ktor:ktor-server-netty:$ktorVersion")
-    implementation("io.ktor:ktor-jackson:$ktorVersion")
+    implementation("io.ktor:ktor-serialization:$ktorVersion")
     implementation("io.ktor:ktor-websockets:$ktorVersion")
 
     implementation("com.h2database:h2:$h2Version")
@@ -44,10 +43,6 @@ dependencies {
 
 application {
     mainClass.set("MainKt")
-}
-
-tasks.withType<KotlinCompile>().configureEach {
-    kotlinOptions.jvmTarget = "1.8"
 }
 
 tasks.withType<Test> {

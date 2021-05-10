@@ -11,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.receiveOrNull
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.encodeToString
 import model.NewWidget
 import service.WidgetService
 import util.JsonMapper.defaultMapper
@@ -56,7 +57,7 @@ fun Route.widget(widgetService: WidgetService) {
         try {
             widgetService.addChangeListener(this.hashCode()) {
                 val output = withContext(Dispatchers.IO) {
-                    defaultMapper.writeValueAsString(it)
+                    defaultMapper.encodeToString(it)
                 }
                 outgoing.send(Frame.Text(output))
             }

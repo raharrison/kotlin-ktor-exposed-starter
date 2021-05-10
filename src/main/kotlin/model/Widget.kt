@@ -1,5 +1,6 @@
 package model
 
+import kotlinx.serialization.Serializable
 import org.jetbrains.exposed.sql.Table
 
 object Widgets : Table() {
@@ -10,7 +11,7 @@ object Widgets : Table() {
     override val primaryKey = PrimaryKey(id)
 }
 
-
+@Serializable
 data class Widget(
         val id: Int,
         val name: String,
@@ -18,7 +19,7 @@ data class Widget(
         val dateUpdated: Long
 )
 
-
+@Serializable
 data class NewWidget(
         val id: Int?,
         val name: String,
