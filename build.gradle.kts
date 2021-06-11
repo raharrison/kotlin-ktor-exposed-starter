@@ -1,22 +1,21 @@
-val ktorVersion = "1.5.4"
-val exposedVersion = "0.31.1"
+val ktorVersion = "1.6.0"
+val exposedVersion = "0.32.1"
 val h2Version = "1.4.200"
 val hikariCpVersion = "4.0.3"
-val flywayVersion = "7.7.3"
-val ktorFlywayVersion = "1.2.2"
+val flywayVersion = "7.10.0"
 val logbackVersion = "1.2.3"
 val assertjVersion = "3.19.0"
-val restAssuredVersion = "4.3.3"
+val restAssuredVersion = "4.4.0"
 val junitVersion = "5.7.1"
 
 plugins {
-    kotlin("jvm") version "1.5.0"
-    kotlin("plugin.serialization") version "1.5.0"
+    kotlin("jvm") version "1.5.10"
+    kotlin("plugin.serialization") version "1.5.10"
     application
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
@@ -30,7 +29,6 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
     implementation("com.zaxxer:HikariCP:$hikariCpVersion")
-    implementation("com.viartemev:ktor-flyway-feature:$ktorFlywayVersion")
     implementation("org.flywaydb:flyway-core:$flywayVersion")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
 

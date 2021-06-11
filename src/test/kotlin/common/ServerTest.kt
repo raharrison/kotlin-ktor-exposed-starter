@@ -3,7 +3,6 @@ package common
 import io.ktor.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
-import io.ktor.util.*
 import io.restassured.RestAssured
 import io.restassured.response.ResponseBodyExtractionOptions
 import io.restassured.specification.RequestSpecification
@@ -40,7 +39,6 @@ open class ServerTest {
 
         private lateinit var server: ApplicationEngine
 
-        @KtorExperimentalAPI
         @ExperimentalCoroutinesApi
         @BeforeAll
         @JvmStatic
