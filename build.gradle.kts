@@ -1,16 +1,16 @@
-val ktorVersion = "1.6.0"
-val exposedVersion = "0.32.1"
+val ktorVersion = "1.6.6"
+val exposedVersion = "0.36.2"
 val h2Version = "1.4.200"
-val hikariCpVersion = "4.0.3"
-val flywayVersion = "7.10.0"
-val logbackVersion = "1.2.3"
-val assertjVersion = "3.19.0"
+val hikariCpVersion = "5.0.0"
+val flywayVersion = "8.1.0"
+val logbackVersion = "1.2.7"
+val assertjVersion = "3.21.0"
 val restAssuredVersion = "4.4.0"
-val junitVersion = "5.7.1"
+val junitVersion = "5.8.2"
 
 plugins {
-    kotlin("jvm") version "1.5.10"
-    kotlin("plugin.serialization") version "1.5.10"
+    kotlin("jvm") version "1.6.0"
+    kotlin("plugin.serialization") version "1.6.0"
     application
 }
 
@@ -19,8 +19,6 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
-
     implementation("io.ktor:ktor-server-netty:$ktorVersion")
     implementation("io.ktor:ktor-serialization:$ktorVersion")
     implementation("io.ktor:ktor-websockets:$ktorVersion")
