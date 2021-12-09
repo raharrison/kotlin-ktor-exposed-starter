@@ -1,4 +1,4 @@
-val ktorVersion = "1.6.6"
+val ktorVersion = "1.6.7"
 val exposedVersion = "0.36.2"
 val h2Version = "1.4.200"
 val hikariCpVersion = "5.0.0"
