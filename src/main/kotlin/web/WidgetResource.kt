@@ -9,7 +9,6 @@ import io.ktor.routing.*
 import io.ktor.websocket.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.channels.receiveOrNull
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.encodeToString
 import model.NewWidget
@@ -62,7 +61,7 @@ fun Route.widget(widgetService: WidgetService) {
                 outgoing.send(Frame.Text(output))
             }
             while (true) {
-                incoming.receiveOrNull() ?: break
+                incoming.receiveCatching().getOrNull() ?: break
             }
         } finally {
             widgetService.removeChangeListener(this.hashCode())
