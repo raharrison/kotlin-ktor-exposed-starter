@@ -51,9 +51,13 @@ fun Route.widget(widgetService: WidgetService) {
             widgetService.addChangeListener(this.hashCode()) {
                 sendSerialized(it)
             }
+            call
             for (frame in incoming) {
-                if (frame.frameType == FrameType.CLOSE) break
-                else println(frame)
+                if (frame.frameType == FrameType.CLOSE) {
+                    break
+                } else if (frame is Frame.Text) {
+                    call.application.environment.log.info("Received websocket message: {}", frame.readText())
+                }
             }
         } finally {
             widgetService.removeChangeListener(this.hashCode())
