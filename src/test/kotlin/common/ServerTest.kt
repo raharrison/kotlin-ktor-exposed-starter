@@ -1,12 +1,11 @@
 package common
 
-import io.ktor.application.*
+import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import io.restassured.RestAssured
 import io.restassured.response.ResponseBodyExtractionOptions
 import io.restassured.specification.RequestSpecification
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -39,7 +38,6 @@ open class ServerTest {
 
         private lateinit var server: ApplicationEngine
 
-        @ExperimentalCoroutinesApi
         @BeforeAll
         @JvmStatic
         fun startServer() {

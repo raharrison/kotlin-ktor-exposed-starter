@@ -1,24 +1,18 @@
 package web
 
-import io.ktor.application.*
 import io.ktor.http.*
-import io.ktor.http.cio.websocket.*
-import io.ktor.request.*
-import io.ktor.response.*
-import io.ktor.routing.*
+import io.ktor.server.application.*
+import io.ktor.server.request.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
+import io.ktor.server.websocket.*
 import io.ktor.websocket.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.withContext
-import kotlinx.serialization.encodeToString
 import model.NewWidget
 import service.WidgetService
-import util.JsonMapper.defaultMapper
 
-@ExperimentalCoroutinesApi
 fun Route.widget(widgetService: WidgetService) {
 
-    route("/widget") {
+    route("/widgets") {
 
         get {
             call.respond(widgetService.getAllWidgets())
@@ -55,13 +49,11 @@ fun Route.widget(widgetService: WidgetService) {
     webSocket("/updates") {
         try {
             widgetService.addChangeListener(this.hashCode()) {
-                val output = withContext(Dispatchers.IO) {
-                    defaultMapper.encodeToString(it)
-                }
-                outgoing.send(Frame.Text(output))
+                sendSerialized(it)
             }
-            while (true) {
-                incoming.receiveCatching().getOrNull() ?: break
+            for (frame in incoming) {
+                if (frame.frameType == FrameType.CLOSE) break
+                else println(frame)
             }
         } finally {
             widgetService.removeChangeListener(this.hashCode())
