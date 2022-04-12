@@ -9,7 +9,7 @@ val restAssuredVersion = "4.5.0"
 val junitVersion = "5.8.2"
 
 plugins {
-    kotlin("jvm") version "1.6.10"
+    kotlin("jvm") version "1.6.20"
     kotlin("plugin.serialization") version "1.6.10"
     application
 }
