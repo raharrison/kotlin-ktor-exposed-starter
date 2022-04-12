@@ -2,7 +2,7 @@
 
 ## Starter project to create a simple RESTful web service in Kotlin
 
-**Updated for Kotlin 1.6.10 and Ktor 2.0.0**
+**Updated for Kotlin 1.6.20 and Ktor 2.0.0**
 
 Companion article: <https://ryanharrison.co.uk/2018/04/14/kotlin-ktor-exposed-starter.html>
 
@@ -76,9 +76,11 @@ All updates (creates, updates and deletes) to `Widget` instances are served as n
 }
 ```
 
+The websocket listener will also log out any text messages send by the client. Refer to [this blog post](https://ryanharrison.co.uk/2018/08/19/testing-websockets.html) for some useful tools to test the websocket behaviour.
+
 ### Testing
 
 The sample Widget service and corresponding endpoints are also tested with 100% coverage. Upon startup of the main JUnit suite (via the `test` source folder), the server is started ready for testing and is torn down after all tests are run.
 
-- Unit testing of services with AssertJ - DAO and business logic
-- Integration testing of endpoints using running server with Rest Assured - routing tests/status codes/response structure
+- Unit testing of services with AssertJ - DAO and business logic is tested by initialising an in-memory H2 database with Exposed, using the same schema as the main app. With this approach database queries are fully tested without any mocking.
+- Integration testing of endpoints using a fully running server with Rest Assured - routing tests/status codes/response structure. This utilises the fact that Ktor is a small microframework that can be easily spun up and down as part of the test suite. You could also use the special test engine that [Ktor provides](https://ktor.io/docs/testing.html), however my preference is to always start a full version of the server so that HTTP behaviour can be tested without relying on special internal mechanisms.
