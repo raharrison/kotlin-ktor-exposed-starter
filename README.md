@@ -1,4 +1,6 @@
-![Build](https://github.com/raharrison/kotlin-ktor-exposed-starter/workflows/Build/badge.svg)
+[![Kotlin](https://img.shields.io/badge/kotlin-1.6.20-blue.svg?logo=kotlin)](http://kotlinlang.org)
+[![Ktor](https://img.shields.io/badge/ktor-2.0.0-blue.svg)](https://github.com/ktorio/ktor)
+[![Build](https://github.com/raharrison/kotlin-ktor-exposed-starter/workflows/Build/badge.svg)](https://github.com/raharrison/kotlin-ktor-exposed-starter/actions/workflows/build.yml)
 
 ## Starter project to create a simple RESTful web service in Kotlin
 
