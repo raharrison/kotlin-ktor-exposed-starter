@@ -156,8 +156,20 @@ class WidgetResourceTest: ServerTest() {
                     close(CloseReason(CloseReason.Codes.NORMAL, "Finished test"))
                 }
             }
+        }
 
+        @Test
+        fun testSendListenerMessage() {
+            val client = HttpClient {
+                install(WebSockets)
+            }
 
+            runBlocking {
+                client.webSocket(host = "localhost", port = 8081, path = "/updates") {
+                    outgoing.send(Frame.Text("sample message"))
+                    close(CloseReason(CloseReason.Codes.NORMAL, "Finished test"))
+                }
+            }
         }
     }
 

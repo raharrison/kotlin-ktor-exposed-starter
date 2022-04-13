@@ -51,7 +51,6 @@ fun Route.widget(widgetService: WidgetService) {
             widgetService.addChangeListener(this.hashCode()) {
                 sendSerialized(it)
             }
-            call
             for (frame in incoming) {
                 if (frame.frameType == FrameType.CLOSE) {
                     break

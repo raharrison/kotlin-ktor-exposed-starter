@@ -6,9 +6,9 @@ import service.DatabaseFactory.dbQuery
 
 class WidgetService {
 
-    private val listeners = mutableMapOf<Int, suspend (Notification<Widget?>) -> Unit>()
+    private val listeners = mutableMapOf<Int, suspend (WidgetNotification) -> Unit>()
 
-    fun addChangeListener(id: Int, listener: suspend (Notification<Widget?>) -> Unit) {
+    fun addChangeListener(id: Int, listener: suspend (WidgetNotification) -> Unit) {
         listeners[id] = listener
     }
 
@@ -27,7 +27,7 @@ class WidgetService {
     suspend fun getWidget(id: Int): Widget? = dbQuery {
         Widgets.select {
             (Widgets.id eq id)
-        }.mapNotNull { toWidget(it) }
+        }.map { toWidget(it) }
             .singleOrNull()
     }
 

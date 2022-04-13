@@ -4,8 +4,8 @@ import common.ServerTest
 import kotlinx.coroutines.runBlocking
 import model.ChangeType
 import model.NewWidget
-import model.Notification
 import model.Widget
+import model.WidgetNotification
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -112,7 +112,7 @@ class WidgetServiceTest: ServerTest() {
             val widget1 = NewWidget(null, "widget1", 10)
 
             var called = false
-            val func: suspend (Notification<Widget?>) -> Unit = {
+            val func: suspend (WidgetNotification) -> Unit = {
                 assertThat(it.type).isEqualTo(ChangeType.CREATE)
                 assertThat(it.entity?.name).isEqualTo(widget1.name)
                 assertThat(it.entity?.quantity).isEqualTo(widget1.quantity)
@@ -132,7 +132,7 @@ class WidgetServiceTest: ServerTest() {
             val updated = NewWidget(null, "updated", 25)
 
             var called = false
-            val func: suspend (Notification<Widget?>) -> Unit = {
+            val func: suspend (WidgetNotification) -> Unit = {
                 assertThat(it.type).isEqualTo(ChangeType.UPDATE)
                 assertThat(it.entity?.name).isEqualTo(updated.name)
                 assertThat(it.entity?.quantity).isEqualTo(updated.quantity)
@@ -152,7 +152,7 @@ class WidgetServiceTest: ServerTest() {
             val saved = addWidget(widget1)
 
             var called = false
-            val func: suspend (Notification<Widget?>) -> Unit = {
+            val func: suspend (WidgetNotification) -> Unit = {
                 assertThat(it.type).isEqualTo(ChangeType.DELETE)
                 assertThat(it.entity).isNull()
                 assertThat(it.id).isEqualTo(saved.id)
@@ -168,7 +168,7 @@ class WidgetServiceTest: ServerTest() {
         @Test
         fun testRemoveListener() = runBlocking {
             var called = false
-            val func: suspend (Notification<Widget?>) -> Unit = {
+            val func: suspend (WidgetNotification) -> Unit = {
                 called = true
             }
 
