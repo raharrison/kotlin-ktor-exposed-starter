@@ -21,7 +21,7 @@ data class Widget(
 
 @Serializable
 data class NewWidget(
-        val id: Int?,
+        val id: Int? = null,
         val name: String,
         val quantity: Int
 )
