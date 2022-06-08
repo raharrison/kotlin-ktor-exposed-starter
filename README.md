@@ -34,11 +34,11 @@ pool is created for all database queries, alongside connection pooling with Hika
 
 ### Routes:
 
-`GET /widget` --> get all widgets in the database
+`GET /widgets` --> get all widgets in the database
 
-`GET /widget/{id}` --> get one widget instance by id (integer)
+`GET /widgets/{id}` --> get one widget instance by id (integer)
 
-`POST /widget` --> add a new widget to the database by providing a JSON object (converted to a NewWidget instance).
+`POST /widgets` --> add a new widget to the database by providing a JSON object (converted to a NewWidget instance).
 e.g - 
 
     {
@@ -49,16 +49,16 @@ e.g -
 returns
 
     {
-        "id": 4,
+        "id": 3,
         "name": "new widget",
         "quantity": 64,
-        "dateCreated": 1519926898
+        "dateUpdated": 1519926898
     }
     
     
-`PUT /widget` --> update an existing widgets name or quantity. Pass in the id in the JSON request to determine which record to update
+`PUT /widgets` --> update an existing widgets name or quantity. Pass in the id in the JSON request to determine which record to update
 
-`DELETE /widget/{id}` --> delete the widget with the specified id
+`DELETE /widgets/{id}` --> delete the widget with the specified id
 
 ### Notifications (WebSocket)
 
