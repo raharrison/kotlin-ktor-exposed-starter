@@ -2,7 +2,7 @@ package service
 
 import model.*
 import org.jetbrains.exposed.sql.*
-import service.DatabaseFactory.dbQuery
+import service.DatabaseFactory.dbExec
 
 class WidgetService {
 
@@ -20,11 +20,11 @@ class WidgetService {
         }
     }
 
-    suspend fun getAllWidgets(): List<Widget> = dbQuery {
+    suspend fun getAllWidgets(): List<Widget> = dbExec {
         Widgets.selectAll().map { toWidget(it) }
     }
 
-    suspend fun getWidget(id: Int): Widget? = dbQuery {
+    suspend fun getWidget(id: Int): Widget? = dbExec {
         Widgets.select {
             (Widgets.id eq id)
         }.map { toWidget(it) }
@@ -36,7 +36,7 @@ class WidgetService {
         return if (id == null) {
             addWidget(widget)
         } else {
-            dbQuery {
+            dbExec {
                 Widgets.update({ Widgets.id eq id }) {
                     it[name] = widget.name
                     it[quantity] = widget.quantity
@@ -51,7 +51,7 @@ class WidgetService {
 
     suspend fun addWidget(widget: NewWidget): Widget {
         var key = 0
-        dbQuery {
+        dbExec {
             key = (Widgets.insert {
                 it[name] = widget.name
                 it[quantity] = widget.quantity
@@ -64,7 +64,7 @@ class WidgetService {
     }
 
     suspend fun deleteWidget(id: Int): Boolean {
-        return dbQuery {
+        return dbExec {
             Widgets.deleteWhere { Widgets.id eq id } > 0
         }.also {
             if (it) onChange(ChangeType.DELETE, id)
