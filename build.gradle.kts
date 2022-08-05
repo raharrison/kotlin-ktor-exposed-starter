@@ -1,6 +1,6 @@
 val ktorVersion = "2.0.3"
 val exposedVersion = "0.39.2"
-val h2Version = "2.1.212"
+val h2Version = "2.1.214"
 val hikariCpVersion = "5.0.1"
 val flywayVersion = "9.0.4"
 val logbackVersion = "1.2.11"
