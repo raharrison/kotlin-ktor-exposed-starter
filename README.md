@@ -5,7 +5,7 @@
 
 ## Starter project to create a simple RESTful web service in Kotlin
 
-**Updated for Kotlin 1.7.10 and Ktor 2.1.0**
+**Updated for Kotlin 1.7.10 and Ktor 2.1.1**
 
 Companion article: <https://ryanharrison.co.uk/2018/04/14/kotlin-ktor-exposed-starter.html>
 
@@ -24,7 +24,10 @@ Companion article: <https://ryanharrison.co.uk/2018/04/14/kotlin-ktor-exposed-st
  - [H2](https://github.com/h2database/h2database) - Embeddable database
  - [HikariCP](https://github.com/brettwooldridge/HikariCP) - High performance JDBC connection pooling
  - [Flyway](https://flywaydb.org/) - Database migrations
- - [JUnit 5](https://junit.org/junit5/), [AssertJ](http://joel-costigliola.github.io/assertj/) and [Rest Assured](http://rest-assured.io/) for testing
+ - [JUnit 5](https://junit.org/junit5/), [AssertJ](http://joel-costigliola.github.io/assertj/)
+   and [Rest Assured](http://rest-assured.io/) for testing
+ - [Kover](https://github.com/Kotlin/kotlinx-kover) for code coverage, publishing
+   to [Codecov](https://about.codecov.io/) through GitHub Actions
  
 The starter project creates a new in-memory H2 database with one table for `Widget` instances.
 
@@ -85,5 +88,13 @@ The websocket listener will also log out any text messages send by the client. R
 
 The sample Widget service and corresponding endpoints are also tested with 100% coverage. Upon startup of the main JUnit suite (via the `test` source folder), the server is started ready for testing and is torn down after all tests are run.
 
-- Unit testing of services with AssertJ - DAO and business logic is tested by initialising an in-memory H2 database with Exposed, using the same schema as the main app. With this approach database queries are fully tested without any mocking.
-- Integration testing of endpoints using a fully running server with Rest Assured - routing tests/status codes/response structure. This utilises the fact that Ktor is a small microframework that can be easily spun up and down as part of the test suite. You could also use the special test engine that [Ktor provides](https://ktor.io/docs/testing.html), however my preference is to always start a full version of the server so that HTTP behaviour can be tested without relying on special internal mechanisms.
+- Unit testing of services with AssertJ - DAO and business logic is tested by initialising an in-memory H2 database with
+  Exposed, using the same schema as the main app. With this approach database queries are fully tested without any
+  mocking.
+- Integration testing of endpoints using a fully running server with Rest Assured - routing tests/status codes/response
+  structure. This utilises the fact that Ktor is a small microframework that can be easily spun up and down as part of
+  the test suite. You could also use the special test engine that [Ktor provides](https://ktor.io/docs/testing.html),
+  however my preference is to always start a full version of the server so that HTTP behaviour can be tested without
+  relying on special internal mechanisms.
+- Code coverage and reporting performed automatically by Kover as part of the Gradle build
+- 
