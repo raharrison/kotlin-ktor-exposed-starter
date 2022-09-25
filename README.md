@@ -1,5 +1,5 @@
 [![Kotlin](https://img.shields.io/badge/kotlin-1.7.10-blue.svg?logo=kotlin)](http://kotlinlang.org)
-[![Ktor](https://img.shields.io/badge/ktor-2.0.3-blue.svg)](https://github.com/ktorio/ktor)
+[![Ktor](https://img.shields.io/badge/ktor-2.1.1-blue.svg)](https://github.com/ktorio/ktor)
 [![Build](https://github.com/raharrison/kotlin-ktor-exposed-starter/workflows/Build/badge.svg)](https://github.com/raharrison/kotlin-ktor-exposed-starter/actions/workflows/build.yml)
 [![codecov](https://codecov.io/gh/raharrison/kotlin-ktor-exposed-starter/branch/master/graph/badge.svg?token=v2k9oObm0C)](https://codecov.io/gh/raharrison/kotlin-ktor-exposed-starter)
 
