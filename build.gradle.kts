@@ -1,4 +1,4 @@
-val ktorVersion = "2.1.1"
+val ktorVersion = "2.1.2"
 val exposedVersion = "0.39.2"
 val h2Version = "2.1.214"
 val hikariCpVersion = "5.0.1"
@@ -9,8 +9,8 @@ val restAssuredVersion = "5.2.0"
 val junitVersion = "5.9.0"
 
 plugins {
-    kotlin("jvm") version "1.7.10"
-    kotlin("plugin.serialization") version "1.7.10"
+    kotlin("jvm") version "1.7.20"
+    kotlin("plugin.serialization") version "1.7.20"
     id("org.jetbrains.kotlinx.kover") version "0.6.0"
     application
 }
