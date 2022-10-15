@@ -41,23 +41,25 @@ pool is created for all database queries, alongside connection pooling with Hika
 
 `GET /widgets/{id}` --> get one widget instance by id (integer)
 
-`POST /widgets` --> add a new widget to the database by providing a JSON object (converted to a NewWidget instance).
-e.g - 
+`POST /widgets` --> add a new widget to the database by providing a JSON object (converted to a NewWidget instance). e.g - 
 
-    {
-        "name": "new widget",
-        "quantity": 64
-    }
+```json
+{
+    "name": "new widget",
+    "quantity": 64
+}
+```
 
 returns
 
-    {
-        "id": 3,
-        "name": "new widget",
-        "quantity": 64,
-        "dateUpdated": 1519926898
-    }
-    
+```json
+{
+    "id": 3,
+    "name": "new widget",
+    "quantity": 64,
+    "dateUpdated": 1519926898
+}
+```  
     
 `PUT /widgets` --> update an existing widgets name or quantity. Pass in the id in the JSON request to determine which record to update
 
@@ -97,4 +99,3 @@ The sample Widget service and corresponding endpoints are also tested with 100% 
   however my preference is to always start a full version of the server so that HTTP behaviour can be tested without
   relying on special internal mechanisms.
 - Code coverage and reporting performed automatically by Kover as part of the Gradle build
-- 
