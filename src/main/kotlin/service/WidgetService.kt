@@ -2,6 +2,7 @@ package service
 
 import model.*
 import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import service.DatabaseFactory.dbExec
 
 class WidgetService {
