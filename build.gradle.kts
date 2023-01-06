@@ -4,7 +4,7 @@ val h2Version = "2.1.214"
 val hikariCpVersion = "5.0.1"
 val flywayVersion = "9.10.2"
 val logbackVersion = "1.4.5"
-val assertjVersion = "3.23.1"
+val assertjVersion = "3.24.1"
 val restAssuredVersion = "5.3.0"
 val junitVersion = "5.9.1"
 
