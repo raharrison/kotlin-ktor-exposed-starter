@@ -10,7 +10,7 @@ val junitVersion = "5.9.1"
 
 plugins {
     kotlin("jvm") version "1.8.0"
-    kotlin("plugin.serialization") version "1.8.0"
+    kotlin("plugin.serialization") version "1.8.10"
     id("org.jetbrains.kotlinx.kover") version "0.6.1"
     application
 }
