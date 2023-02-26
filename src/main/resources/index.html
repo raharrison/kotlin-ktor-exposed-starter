@@ -12,9 +12,9 @@
 <p>This starter project creates a new in-memory H2 database with one table for <code>Widget</code> instances. A simple RESTful interface is provided
     to perform CRUD operations on <code>Widgets</code> alongside a websocket to be notified in real-time of any changes.</p>
 <h2 id="routes-">Routes:</h2>
-<p><code>GET /widget</code> --&gt; get all widgets in the database</p>
-<p><code>GET /widget/{id}</code> --&gt; get one widget instance by id (integer)</p>
-<p><code>POST /widget</code> --&gt; add a new widget to the database by providing a JSON object (converted to a NewWidget instance).
+<p><code>GET /widgets</code> --&gt; get all widgets in the database</p>
+<p><code>GET /widgets/{id}</code> --&gt; get one widget instance by id (integer)</p>
+<p><code>POST /widgets</code> --&gt; add a new widget to the database by providing a JSON object (converted to a NewWidget instance).
     e.g - </p>
 <pre><code>{
     <span class="hljs-attr">"name"</span>: <span class="hljs-string">"new widget"</span>,
@@ -29,9 +29,9 @@
     <span class="hljs-attr">"dateCreated"</span>: <span class="hljs-number">1519926898</span>
 }
 </code></pre>
-<p><code>PUT /widget</code> --&gt; update an existing widgets name or quantity. Pass in the id in the JSON request to determine which record to update
+<p><code>PUT /widgets</code> --&gt; update an existing widgets name or quantity. Pass in the id in the JSON request to determine which record to update
 </p>
-<p><code>DELETE /widget/{id}</code> --&gt; delete the widget with the specified id</p>
+<p><code>DELETE /widgets/{id}</code> --&gt; delete the widget with the specified id</p>
 <h2 id="notifications-websocket-">Notifications (WebSocket)</h2>
 <p>All updates (creates, updates and deletes) to <code>Widget</code> instances are served as notifications through a WebSocket endpoint:</p>
 <p><code>WS /updates</code> --&gt; returns <code>Notification</code> instances containing the change type, id and entity (if applicable) e.g:</p>
