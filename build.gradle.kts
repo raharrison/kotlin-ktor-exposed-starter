@@ -6,7 +6,7 @@ val flywayVersion = "9.17.0"
 val logbackVersion = "1.4.5"
 val assertjVersion = "3.24.2"
 val restAssuredVersion = "5.3.0"
-val junitVersion = "5.9.1"
+val junitVersion = "5.9.2"
 
 plugins {
     kotlin("jvm") version "1.8.21"
