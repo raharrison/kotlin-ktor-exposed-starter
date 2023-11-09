@@ -1,4 +1,4 @@
-FROM gradle:7-jdk19 AS build
+FROM gradle:8-jdk20 AS build
 
 USER gradle
 WORKDIR /app
@@ -8,7 +8,7 @@ COPY src/ ./src
 
 RUN gradle installDist --no-daemon
 
-FROM eclipse-temurin:19-jre-jammy
+FROM eclipse-temurin:21-jre-jammy
 
 EXPOSE 8080
 
