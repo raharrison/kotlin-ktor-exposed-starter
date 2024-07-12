@@ -26,9 +26,9 @@ class WidgetService {
     }
 
     suspend fun getWidget(id: Int): Widget? = dbExec {
-        Widgets.select {
-            (Widgets.id eq id)
-        }.map { toWidget(it) }
+        Widgets.selectAll()
+            .where { (Widgets.id eq id) }
+            .map { toWidget(it) }
             .singleOrNull()
     }
 
