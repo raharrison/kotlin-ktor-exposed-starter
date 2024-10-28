@@ -36,7 +36,7 @@ open class ServerTest {
 
         private var serverStarted = false
 
-        private lateinit var server: ApplicationEngine
+        private lateinit var server:  EmbeddedServer<NettyApplicationEngine, NettyApplicationEngine. Configuration>
 
         @BeforeAll
         @JvmStatic

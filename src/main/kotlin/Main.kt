@@ -1,9 +1,8 @@
 import io.ktor.serialization.kotlinx.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
-import io.ktor.server.engine.*
 import io.ktor.server.netty.*
-import io.ktor.server.plugins.callloging.*
+import io.ktor.server.plugins.calllogging.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.plugins.defaultheaders.*
 import io.ktor.server.routing.*
@@ -29,7 +28,7 @@ fun Application.module() {
 
     val widgetService = WidgetService()
 
-    install(Routing) {
+    routing {
         index()
         widget(widgetService)
     }
@@ -37,5 +36,5 @@ fun Application.module() {
 }
 
 fun main(args: Array<String>) {
-    embeddedServer(Netty, commandLineEnvironment(args)).start(wait = true)
+    EngineMain.main(args)
 }
