@@ -1,17 +1,17 @@
-val ktorVersion = "3.0.0"
-val exposedVersion = "0.55.0"
+val ktorVersion = "3.1.1"
+val exposedVersion = "0.60.0"
 val h2Version = "2.3.232"
-val hikariCpVersion = "5.1.0"
-val flywayVersion = "10.20.1"
-val logbackVersion = "1.5.12"
-val assertjVersion = "3.26.3"
-val restAssuredVersion = "5.5.0"
-val junitVersion = "5.11.3"
+val hikariCpVersion = "6.2.1"
+val flywayVersion = "11.3.4"
+val logbackVersion = "1.5.17"
+val assertjVersion = "3.27.3"
+val restAssuredVersion = "5.5.1"
+val junitVersion = "5.12.0"
 
 plugins {
-    kotlin("jvm") version "2.0.21"
-    kotlin("plugin.serialization") version "2.0.21"
-    id("org.jetbrains.kotlinx.kover") version "0.8.2"
+    kotlin("jvm") version "2.1.10"
+    kotlin("plugin.serialization") version "2.1.10"
+    id("org.jetbrains.kotlinx.kover") version "0.9.1"
     application
 }
 
