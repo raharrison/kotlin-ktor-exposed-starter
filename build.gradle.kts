@@ -43,6 +43,10 @@ dependencies {
     testImplementation("io.ktor:ktor-client-cio:$ktorVersion")
 }
 
+kotlin {
+    jvmToolchain(21)
+}
+
 application {
     mainClass.set("MainKt")
 }
