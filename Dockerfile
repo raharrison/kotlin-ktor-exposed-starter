@@ -8,7 +8,7 @@ COPY src/ ./src
 
 RUN gradle installDist --no-daemon
 
-FROM eclipse-temurin:21-jre-jammy
+FROM eclipse-temurin:21-jre-noble
 
 EXPOSE 8080
 
