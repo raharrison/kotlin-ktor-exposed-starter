@@ -6,7 +6,7 @@ import io.ktor.server.routing.*
 
 fun Route.index() {
 
-    val indexPage = javaClass.getResource("/index.html").readText()
+    val indexPage = javaClass.getResource("/pages/index.html")?.readText() ?: error("index.html resource not found")
 
     get("/") {
         call.respondText(indexPage, ContentType.Text.Html)
