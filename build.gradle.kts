@@ -6,7 +6,7 @@ val flywayVersion = "11.9.1"
 val logbackVersion = "1.5.17"
 val assertjVersion = "3.27.3"
 val restAssuredVersion = "5.5.6"
-val junitVersion = "5.11.3"
+val junitVersion = "5.13.4"
 
 plugins {
     kotlin("jvm") version "2.2.0"
@@ -36,10 +36,11 @@ dependencies {
     implementation("org.flywaydb:flyway-core:$flywayVersion")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
 
+    testImplementation(platform("org.junit:junit-bom:$junitVersion"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.assertj:assertj-core:$assertjVersion")
     testImplementation("io.rest-assured:rest-assured:$restAssuredVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
     testImplementation("io.ktor:ktor-client-cio:$ktorVersion")
 }
 
