@@ -1,11 +1,11 @@
-val ktorVersion = "3.2.0"
+val ktorVersion = "3.2.3"
 val exposedVersion = "0.61.0"
 val h2Version = "2.3.232"
 val hikariCpVersion = "6.2.1"
 val flywayVersion = "11.9.1"
 val logbackVersion = "1.5.17"
 val assertjVersion = "3.27.3"
-val restAssuredVersion = "5.5.1"
+val restAssuredVersion = "5.5.6"
 val junitVersion = "5.11.3"
 
 plugins {
