@@ -1,0 +1,56 @@
+[versions]
+kotlin = "2.2.20"
+ktor = "3.3.0"
+kover = "0.9.1"
+exposed = "0.61.0"
+h2 = "2.3.232"
+hikaricp = "6.2.1"
+flyway = "11.9.1"
+logback = "1.5.18"
+junit = "5.13.4"
+assertj = "3.27.3"
+restAssured = "5.5.6"
+
+[libraries]
+ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor" }
+ktor-server-netty = { module = "io.ktor:ktor-server-netty", version.ref = "ktor" }
+ktor-server-call-logging = { module = "io.ktor:ktor-server-call-logging", version.ref = "ktor" }
+ktor-server-default-headers = { module = "io.ktor:ktor-server-default-headers", version.ref = "ktor" }
+ktor-server-websockets = { module = "io.ktor:ktor-server-websockets", version.ref = "ktor" }
+ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+
+exposed-core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed" }
+exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version.ref = "exposed" }
+h2 = { module = "com.h2database:h2", version.ref = "h2" }
+hikaricp = { module = "com.zaxxer:HikariCP", version.ref = "hikaricp" }
+flyway = { module = "org.flywaydb:flyway-core", version.ref = "flyway" }
+logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+restAssured = { module = "io.rest-assured:rest-assured", version.ref = "restAssured" }
+ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+
+[bundles]
+ktor-server = [
+    "ktor-server-core",
+    "ktor-server-netty",
+    "ktor-server-call-logging",
+    "ktor-server-default-headers",
+    "ktor-server-websockets",
+    "ktor-server-content-negotiation"
+]
+
+exposed = [
+    "exposed-core",
+    "exposed-jdbc",
+]
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
+kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }

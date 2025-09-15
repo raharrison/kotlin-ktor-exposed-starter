@@ -6,6 +6,7 @@ object JsonMapper {
 
     val defaultMapper = Json {
         prettyPrint = true
+        ignoreUnknownKeys = true
     }
 
 }
