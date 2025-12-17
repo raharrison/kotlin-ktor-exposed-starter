@@ -1,15 +1,15 @@
 [versions]
-kotlin = "2.2.20"
-ktor = "3.3.0"
-kover = "0.9.1"
+kotlin = "2.3.0"
+ktor = "3.3.3"
+kover = "0.9.4"
 exposed = "0.61.0"
-h2 = "2.3.232"
-hikaricp = "6.2.1"
-flyway = "11.9.1"
-logback = "1.5.18"
-junit = "5.13.4"
+h2 = "2.4.240"
+hikaricp = "6.3.3"
+flyway = "11.19.0"
+logback = "1.5.22"
+junit = "6.0.1"
 assertj = "3.27.3"
-restAssured = "5.5.6"
+restAssured = "6.0.0"
 
 [libraries]
 ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor" }
