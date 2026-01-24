@@ -1,7 +1,7 @@
 package model
 
 import kotlinx.serialization.Serializable
-import org.jetbrains.exposed.sql.Table
+import org.jetbrains.exposed.v1.core.Table
 
 object Widgets : Table() {
     val id = integer("id").autoIncrement()
