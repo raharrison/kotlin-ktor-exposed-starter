@@ -1,8 +1,8 @@
 [versions]
-kotlin = "2.3.0"
+kotlin = "2.3.10"
 ktor = "3.4.0"
 kover = "0.9.4"
-exposed = "1.0.0"
+exposed = "1.1.1"
 h2 = "2.4.240"
 hikaricp = "7.0.2"
 flyway = "11.19.0"
